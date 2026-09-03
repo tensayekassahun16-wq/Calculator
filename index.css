@@ -1,0 +1,12 @@
+body{
+    background-color: cornsilk;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    border: 5px solid black;
+    border-radius: 16px;
+}
