@@ -27,7 +27,8 @@ numbers.forEach((number)=>{
             }
         }
         else{
-            //do nothing?
+            // do nothing?, No i'll be adding a thing to check the previous entry and if 
+            // they are the same type it will replace it
         }
     });
 });
@@ -40,7 +41,9 @@ operators.forEach((operator)=>{
             console.log(operation);
         }
         else{
-            //idk what to put
+            if(operation.length>1 && typeof(operation[1]) === 'string'){
+                operation[1] = operator.textContent;
+            }
         }
     });
 });
