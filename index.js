@@ -2,16 +2,22 @@ const numbers = document.querySelectorAll(".numbers");
 const operators = document.querySelectorAll(".operator");
 let count = 0;
 let operation = [];
-let result;
 
 function operationCalculator(arr){
-    if(arr[1] === '+'){
-        console.log(arr[0] + arr[2]);
-        count = 0;
-        arr.length = 0;
-        console.log(count);
-        console.log(arr.length);
+    let loopResult = 0;
+    for(let i = 1; i<arr.length; i+=2){
+        if(arr[i] === '+'){
+            loopResult = (arr[i-1] + arr[i+1]);
+            arr[i+1]+=arr[i-1];
+            console.log(operation);
+        }
+        else if(arr[i] === '-'){
+            loopResult = (arr[i-1] - arr[i+1]);
+            arr[i+1] = arr[i-1] - arr[i+1];
+            console.log(operation);
+        }
     }
+    return loopResult;
 }
 
 numbers.forEach((number)=>{
@@ -20,15 +26,19 @@ numbers.forEach((number)=>{
             operation.push(+(number.textContent));
             count++;
             console.log(operation);
-            if(operation.length === 3){
-                //call calculating function
-                operationCalculator(operation);
-                //store value inside a variable and maybe the first slot of the array
-            }
+            // if(operation.length === 3){
+            //     //call calculating function
+            //     operationCalculator(operation);
+            //     //store value inside a variable and maybe the first slot of the array
+            // }
         }
         else{
             // do nothing?, No i'll be adding a thing to check the previous entry and if 
             // they are the same type it will replace it
+            if(operation.length%2!==0 && typeof(operation[count-1]) === 'number'){
+                operation[count-1] = +(number.textContent);
+                console.log(operation);
+            }
         }
     });
 });
@@ -41,9 +51,20 @@ operators.forEach((operator)=>{
             console.log(operation);
         }
         else{
-            if(operation.length>1 && typeof(operation[1]) === 'string'){
-                operation[1] = operator.textContent;
+            if(operation.length>1 && typeof(operation[count-1]) === 'string'){
+                operation[count-1] = operator.textContent;
+                console.log(operation);
             }
         }
     });
+});
+
+const equate = document.querySelector(".result");
+equate.addEventListener("click", ()=>{
+    let result = operationCalculator(operation);
+    operation.length = 0;
+    count = 0;
+    console.log(result);
+    console.log(operation);
+    console.log(count);
 });
