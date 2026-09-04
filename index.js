@@ -1,6 +1,6 @@
 const numbers = document.querySelectorAll(".numbers");
 const operators = document.querySelectorAll(".operator");
-let count = 0;
+let count = 0, divByZero = false;
 let operation = [];
 
 function operationCalculator(arr){
@@ -14,6 +14,21 @@ function operationCalculator(arr){
         else if(arr[i] === '-'){
             loopResult = (arr[i-1] - arr[i+1]);
             arr[i+1] = arr[i-1] - arr[i+1];
+            console.log(operation);
+        }
+        else if(arr[i] === '/'){
+            if(arr[i+1] === 0){
+                divByZero = true;
+            }
+            else{
+                loopResult = arr[i-1]/arr[i+1];
+                arr[i+1] = arr[i-1]/arr[i+1];
+                console.log(operation);
+            }
+        }
+        else if(arr[i] === '*'){
+            loopResult = arr[i-1] * arr[i+1];
+            arr[i+1] = arr[i-1] * arr[i+1];
             console.log(operation);
         }
     }
@@ -61,10 +76,18 @@ operators.forEach((operator)=>{
 
 const equate = document.querySelector(".result");
 equate.addEventListener("click", ()=>{
-    let result = operationCalculator(operation);
-    operation.length = 0;
-    count = 0;
-    console.log(result);
-    console.log(operation);
-    console.log(count);
+    let result;
+    if(operation.length%2!==0){
+        result = operationCalculator(operation);
+        operation.length = 0;
+        count = 0;
+        console.log(result);
+        console.log(operation);
+        console.log(count);
+    }
+    else{
+        console.log("Unfinished or no expressions");
+        operation.length = 0;
+        count = 0;
+    }
 });
