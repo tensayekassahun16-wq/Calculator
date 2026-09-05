@@ -43,11 +43,6 @@ numbers.forEach((number)=>{
             operation.push(+(number.textContent));
             count++;
             console.log(operation);
-            // if(operation.length === 3){
-            //     //call calculating function
-            //     operationCalculator(operation);
-            //     //store value inside a variable and maybe the first slot of the array
-            // }
         }
         else{
             // do nothing?, No i'll be adding a thing to check the previous entry and if 
@@ -94,4 +89,26 @@ equate.addEventListener("click", ()=>{
         operation.length = 0;
         count = 0;
     }
+});
+
+const decimal = document.querySelector(".decimal");
+decimal.addEventListener("click", ()=>{
+    if(count%2!==0 && typeof(operation[count-1]) === 'number'){
+        operation[count-1] = operation[count-1] + '.';
+    }
+});
+
+const backSpace = document.querySelector(".backspace");
+backSpace.addEventListener("click", ()=>{
+    operation.length = operation.length - 1;
+    count--;
+    console.log(operation);
+});
+
+const clear = document.querySelector(".clear");
+clear.addEventListener("click", ()=>{
+    operation.length = 0;
+    count = 0;
+    console.log("cleared");
+    console.log(operation);
 });
