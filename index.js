@@ -7,8 +7,8 @@ function operationCalculator(arr){
     let loopResult = 0;
     for(let i = 1; i<arr.length; i+=2){
         if(arr[i] === '+'){
-            loopResult = (arr[i-1] + arr[i+1]);
-            arr[i+1]+=arr[i-1];
+            loopResult = +arr[i-1] + +arr[i+1];
+            arr[i+1] = +arr[i-1] + +arr[i+1];
             console.log(operation);
         }
         else if(arr[i] === '-'){
@@ -44,11 +44,6 @@ numbers.forEach((number)=>{
             console.log(operation);
         }
         else{
-            // do nothing?, No i'll be adding a thing to check the previous entry and if 
-            // they are the same type it will replace it
-            // no what is gonna happen is i only allow single digits so no replacement but
-            // rather its going to sum add the digits as strings then convert it to a number
-            // typeof(operation[count-1]) === 'number'
             if(operation.length%2!==0){
                 operation[count-1] = +(String(operation[count-1]) + (number.textContent));
                 console.log(operation);
