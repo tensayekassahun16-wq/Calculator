@@ -19,6 +19,8 @@ function operationCalculator(arr){
         else if(arr[i] === '/'){
             if(arr[i+1] === 0){
                 divByZero = true;
+                loopResult = "ERROR: ATTEMPTED DIVISION BY ZERO";
+                break;
             }
             else{
                 loopResult = arr[i-1]/arr[i+1];
@@ -50,8 +52,10 @@ numbers.forEach((number)=>{
         else{
             // do nothing?, No i'll be adding a thing to check the previous entry and if 
             // they are the same type it will replace it
+            // no what is gonna happen is i only allow single digits so no replacement but
+            // rather its going to sum add the digits as strings then convert it to a number
             if(operation.length%2!==0 && typeof(operation[count-1]) === 'number'){
-                operation[count-1] = +(number.textContent);
+                operation[count-1] = +(String(operation[count-1]) + (number.textContent));
                 console.log(operation);
             }
         }
