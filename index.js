@@ -2,6 +2,7 @@ const numbers = document.querySelectorAll(".numbers");
 const operators = document.querySelectorAll(".operator");
 let count = 0;
 let operation = [];
+const display = document.querySelector(".display");
 
 function operationCalculator(arr){
     let loopResult = 0;
@@ -41,11 +42,13 @@ numbers.forEach((number)=>{
         if(count%2===0){
             operation.push(number.textContent);
             count++;
+            display.textContent = operation[count-1];
             console.log(operation);
         }
         else{
             if(operation.length%2!==0 && Number(operation[count-1]) !== NaN){
                 operation[count-1] = operation[count-1] + number.textContent;
+                display.textContent = operation[count-1];
                 console.log(operation);
             }
         }
@@ -75,18 +78,19 @@ equate.addEventListener("click", ()=>{
         result = operationCalculator(operation);
         operation.length = 0;
         count = 0;
+        display.textContent = result;
         console.log(result);
         console.log(operation);
         console.log(count);
     }
     else{
+        display.textContent = "Unfinished or no expressions";
         console.log("Unfinished or no expressions");
         operation.length = 0;
         count = 0;
     }
 });
-//more work needs to be done here, we can't add numbers like 1.09
-//it converts 1.0 to number so it becomes 1 before we enter 9
+
 const decimal = document.querySelector(".decimal");
 decimal.addEventListener("click", ()=>{
     let decimalInstance = false;
@@ -96,21 +100,36 @@ decimal.addEventListener("click", ()=>{
     }
     if(count%2!==0 && Number(operation[count-1]) !== NaN && !(decimalInstance)){
         operation[count-1] = operation[count-1] + '.';
+        display.textContent = operation[count-1];
         console.log(operation);
     }
 });
 
 const backSpace = document.querySelector(".backspace");
 backSpace.addEventListener("click", ()=>{
-    operation.length = operation.length - 1;
-    count--;
-    console.log(operation);
+    if(operation.length>0){
+        if(operation[count-1].length === 1){
+            //for when there is only one element so that count is decremented and
+            //length adjusted for calculation function
+            operation.length = operation.length - 1;
+            count--;
+            display.textContent = operation[count-1];
+            console.log(operation);
+        }
+        else{
+            //using string method to slice the last element
+            operation[count-1] = operation[count-1].slice(0, operation[count-1].length - 1);
+            display.textContent = operation[count-1];
+            console.log(operation);
+        }
+    }
 });
 
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", ()=>{
     operation.length = 0;
     count = 0;
+    display.textContent = '';
     console.log("cleared");
     console.log(operation);
 });
