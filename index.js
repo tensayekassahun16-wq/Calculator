@@ -18,8 +18,8 @@ function operationCalculator(arr){
             console.log(operation);
         }
         else if(arr[i] === '/'){
-            if(arr[i+1] === 0){
-                loopResult = "ERROR: ATTEMPTED DIVISION BY ZERO";
+            if(arr[i+1] === '0'){
+                loopResult = "ERROR";
                 break;
             }
             else{
