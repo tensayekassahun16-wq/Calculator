@@ -12,8 +12,8 @@ function operationCalculator(arr){
             console.log(operation);
         }
         else if(arr[i] === '-'){
-            loopResult = (arr[i-1] - arr[i+1]);
-            arr[i+1] = arr[i-1] - arr[i+1];
+            loopResult = +arr[i-1] - +arr[i+1];
+            arr[i+1] = +arr[i-1] - +arr[i+1];
             console.log(operation);
         }
         else if(arr[i] === '/'){
@@ -22,14 +22,14 @@ function operationCalculator(arr){
                 break;
             }
             else{
-                loopResult = arr[i-1]/arr[i+1];
-                arr[i+1] = arr[i-1]/arr[i+1];
+                loopResult = +arr[i-1]/+arr[i+1];
+                arr[i+1] = +arr[i-1]/+arr[i+1];
                 console.log(operation);
             }
         }
         else if(arr[i] === '*'){
-            loopResult = arr[i-1] * arr[i+1];
-            arr[i+1] = arr[i-1] * arr[i+1];
+            loopResult = +arr[i-1] * +arr[i+1];
+            arr[i+1] = +arr[i-1] * +arr[i+1];
             console.log(operation);
         }
     }
@@ -39,13 +39,13 @@ function operationCalculator(arr){
 numbers.forEach((number)=>{
     number.addEventListener("click", ()=>{
         if(count%2===0){
-            operation.push(+(number.textContent));
+            operation.push(number.textContent);
             count++;
             console.log(operation);
         }
         else{
-            if(operation.length%2!==0){
-                operation[count-1] = +(String(operation[count-1]) + (number.textContent));
+            if(operation.length%2!==0 && Number(operation[count-1]) !== NaN){
+                operation[count-1] = operation[count-1] + number.textContent;
                 console.log(operation);
             }
         }
@@ -85,7 +85,8 @@ equate.addEventListener("click", ()=>{
         count = 0;
     }
 });
-//more work needs to be done here
+//more work needs to be done here, we can't add numbers like 1.09
+//it converts 1.0 to number so it becomes 1 before we enter 9
 const decimal = document.querySelector(".decimal");
 decimal.addEventListener("click", ()=>{
     let decimalInstance = false;
@@ -93,7 +94,7 @@ decimal.addEventListener("click", ()=>{
     for(let digit of expression){
         if(digit === '.') decimalInstance = true;
     }
-    if(count%2!==0 && typeof(operation[count-1]) === 'number' && !(decimalInstance)){
+    if(count%2!==0 && Number(operation[count-1]) !== NaN && !(decimalInstance)){
         operation[count-1] = operation[count-1] + '.';
         console.log(operation);
     }
