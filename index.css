@@ -1,33 +1,82 @@
-body{
+body {
     background-color: black;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 .container{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: gray;
-    border: 5px solid white;
+    background-color: #2d3748;
+    border: 2px solid #4a5568;
     border-radius: 16px;
-    width: 240px;
-    height: 300px;
+    width: 280px;
+    padding: 20px;
 }
-.display{
-    border: 2px solid black;
-    width: 200px;
-    height: 100px;
-    background-color: white;
-    border-radius: 16px;
-    margin: 10px;
-    padding: 5px;
-    text-align: end;
+.name {
+    color: #a0aec0;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
 }
-.numbers, .operator, .result, .clear, .backspace, .decimal{
-    width:40px;
-    height: 40px;
-    margin: 2px 12px 2px 5px;
+.display {
+    border: 2px solid #4a5568;
+    width: 250px;
+    height: 60px;
+    background-color: #edf2f7;
     border-radius: 8px;
+    margin-bottom: 16px;
+    padding: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #1a202c;
+    text-align: right;
+    box-sizing: border-box;
 }
-.operator, .result, .clear, .backspace{
-    background-color: lightblue;
+.body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 250px;
+}
+.numbers, .operator, .result, .clear, .backspace, .decimal {
+    width: 56.5px;
+    height: 48px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #e2e8f0;
+    color: #2d3748;
+}
+.numbers:hover, .decimal:hover {
+    background-color: #cbd5e0;
+}
+.operator {
+    background-color: #4299e1;
+    color: white;
+}
+.operator:hover {
+    background-color: #3182ce;
+}
+.clear, .backspace {
+    background-color: #e53e3e;
+    color: white;
+}
+.clear:hover, .backspace:hover {
+    background-color: #c53030;
+}
+.result {
+    width: 121px; /* Spans across two columns plus the gap */
+    background-color: #48bb78;
+    color: white;
+}
+.result:hover {
+    background-color: #38a169;
 }
